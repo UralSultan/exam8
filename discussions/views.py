@@ -2,10 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 
-from discussions.forms import TopicForm
-from discussions.models import Topic
+from discussions.forms import TopicForm, ReplyForm
+from discussions.models import Topic, Reply
 
 
 class TopicListView(ListView):
@@ -27,6 +28,11 @@ class TopicDetailView(DetailView):
     model = Topic
     template_name = 'discussions/topic_detail.html'
     context_object_name = 'topic'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['reply_form'] = ReplyForm()
+        return context
 
 
 class TopicCreateView(LoginRequiredMixin, CreateView):
@@ -54,3 +60,16 @@ class TopicUpdateView(TopicAuthorRequiredMixin, UpdateView):
 class TopicDeleteView(TopicAuthorRequiredMixin, DeleteView):
     success_url = reverse_lazy('discussions:topic_list')
     template_name = 'discussions/topic_confirm_delete.html'
+
+
+class ReplyCreateView(LoginRequiredMixin, CreateView):
+    model = Reply
+    form_class = ReplyForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.topic = get_object_or_404(Topic, pk=self.kwargs['pk'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('discussions:topic_detail', kwargs={'pk': self.kwargs['pk']})
