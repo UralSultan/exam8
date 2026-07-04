@@ -52,7 +52,7 @@
 <section class="replies">
     <h2>Ответы</h2>
 
-    {% for reply in topic.replies.all %}
+    {% for reply in replies_page %}
         <article class="reply">
             <div class="reply-author">
                 {% if reply.author.avatar %}
@@ -64,11 +64,33 @@
             <div class="reply-body">
                 <div class="reply-date">{{ reply.created_at|date:"d.m.Y H:i" }}</div>
                 <p>{{ reply.text }}</p>
+                {% if user == reply.author %}
+                    <div class="reply-actions">
+                        <a href="{% url 'discussions:reply_update' reply.pk %}">Редактировать</a>
+                        <a href="{% url 'discussions:reply_delete' reply.pk %}">Удалить</a>
+                    </div>
+                {% endif %}
             </div>
         </article>
     {% empty %}
         <div class="empty">Пока нет ответов.</div>
     {% endfor %}
+
+    {% if replies_page.has_other_pages %}
+    <nav class="pagination">
+        {% if replies_page.has_previous %}
+            <a href="?page={{ replies_page.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current-page">
+            Страница {{ replies_page.number }} из {{ replies_page.paginator.num_pages }}
+        </span>
+
+        {% if replies_page.has_next %}
+            <a href="?page={{ replies_page.next_page_number }}">Следующая</a>
+        {% endif %}
+    </nav>
+{% endif %}
 </section>
 
 <a href="{% url 'discussions:topic_list' %}">Назад к темам</a>

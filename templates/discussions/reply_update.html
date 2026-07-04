@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать ответ{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Редактировать ответ</h1>
+
+    <form method="post" class="form">
+        {% include 'partials/_form.html' %}
+        <button type="submit">Сохранить</button>
+    </form>
+</section>
+{% endblock %}

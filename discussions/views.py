@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
-
+from django.core.paginator import Paginator
 from discussions.forms import TopicForm, ReplyForm
 from discussions.models import Topic, Reply
 
@@ -28,10 +28,20 @@ class TopicDetailView(DetailView):
     model = Topic
     template_name = 'discussions/topic_detail.html'
     context_object_name = 'topic'
+    replies_per_page = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        replies = (
+            self.object.replies
+            .select_related('author')
+            .order_by('-created_at')
+        )
+        paginator = Paginator(replies, self.replies_per_page)
+        page_number = self.request.GET.get('page')
+        replies_page = paginator.get_page(page_number)
         context['reply_form'] = ReplyForm()
+        context['replies_page'] = replies_page
         return context
 
 

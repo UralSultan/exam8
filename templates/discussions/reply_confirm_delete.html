@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить ответ{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h1>Удалить ответ</h1>
+    <p>Вы уверены, что хотите удалить этот ответ?</p>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{{ reply.topic.get_absolute_url }}">Отмена</a>
+    </form>
+</section>
+{% endblock %}

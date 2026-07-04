@@ -464,3 +464,36 @@ textarea {
         text-align: left;
     }
 }
+
+
+.reply-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.reply-actions a {
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: #ffffff;
+    background: #c90f20;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.reply-actions a:hover {
+    color: #ffffff;
+    background: #9f0a18;
+}
+
+.reply-actions a:last-child {
+    background: #7f0712;
+}
+
+.reply-actions a:last-child:hover {
+    background: #5f050d;
+}
+
+.replies + .pagination {
+    margin-bottom: 24px;
+}
