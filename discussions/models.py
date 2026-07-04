@@ -1,6 +1,8 @@
 from django.db import models
-from forum import settings
 from django.urls import reverse
+
+from forum import settings
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=200)

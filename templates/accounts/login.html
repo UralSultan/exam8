@@ -3,13 +3,11 @@
 {% block title %}Вход{% endblock %}
 
 {% block content %}
-<h1>Вход</h1>
-
-<form method="post">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit">Войти</button>
-</form>
+<section class="panel">
+    <h1>Вход</h1>
+    <form method="post" class="form">
+        {% include 'partials/_form.html' %}
+        <button type="submit">Войти</button>
+    </form>
+</section>
 {% endblock %}

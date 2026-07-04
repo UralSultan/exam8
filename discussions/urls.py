@@ -1,5 +1,6 @@
 from django.urls import path
-from discussions.views import TopicListView, TopicCreateView, TopicDetailView
+
+from discussions.views import TopicCreateView, TopicDetailView, TopicListView
 
 app_name = 'discussions'
 

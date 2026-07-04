@@ -10,19 +10,48 @@
     {% endif %}
 </div>
 
-{% for topic in topics %}
-    <article class="topic">
-        <a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a>
-        <p>{{ topic.text }}</p>
-        <div class="topic-meta">
-            {% if topic.author.avatar %}
-                <img class="avatar small" src="{{ topic.author.avatar.url }}" alt="{{ topic.author.username }}">
-            {% endif %}
-            <span>{{ topic.author.username }}</span>
-            <span>{{ topic.created_at|date:"d.m.Y H:i" }}</span>
-        </div>
-    </article>
-{% empty %}
-    <div class="empty">Пока нет тем.</div>
-{% endfor %}
+<div class="topic-table-wrap">
+    <table class="topic-table">
+        <thead>
+            <tr>
+                <th>Название темы</th>
+                <th>Дата создания</th>
+                <th>Автор</th>
+                <th>Ответы</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr class="topic-row" onclick="window.location.href='{{ topic.get_absolute_url }}'">
+                    <td class="topic-title">
+                        <a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a>
+                    </td>
+                    <td>{{ topic.created_at|date:"d.m.Y H:i" }}</td>
+                    <td>{{ topic.author.username }}</td>
+                    <td>{{ topic.replies_count }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="empty-row" colspan="4">Пока нет тем.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if is_paginated %}
+    <nav class="pagination" aria-label="Пагинация тем">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+        {% endif %}
+
+        <span class="current-page">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Вперёд</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </nav>
+{% endif %}
 {% endblock %}

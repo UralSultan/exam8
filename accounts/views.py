@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from accounts.forms import RegisterForm
+
 
 class RegisterView(CreateView):
     form_class = RegisterForm
@@ -14,6 +14,3 @@ class RegisterView(CreateView):
         response = super().form_valid(form)
         login(self.request, self.object)
         return response
-
-
-

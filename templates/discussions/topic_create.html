@@ -3,14 +3,11 @@
 {% block title %}Создать тему{% endblock %}
 
 {% block content %}
-<h1>Создать тему</h1>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Создать</button>
-</form>
-
-<a href="{% url 'discussions:topic_list' %}">Назад к темам</a>
+<section class="panel">
+    <h1>Создать тему</h1>
+    <form method="post" class="form">
+        {% include 'partials/_form.html' %}
+        <button type="submit">Создать</button>
+    </form>
+</section>
 {% endblock %}

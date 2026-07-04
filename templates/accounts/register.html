@@ -3,13 +3,11 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-<h1>Регистрация</h1>
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit">Зарегистрироваться</button>
-</form>
+<section class="panel">
+    <h1>Регистрация</h1>
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% include 'partials/_form.html' %}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</section>
 {% endblock %}
