@@ -377,3 +377,90 @@ textarea {
 .button.danger:hover {
     background: #5f050d;
 }
+
+.reply-form-panel {
+    margin-bottom: 24px;
+}
+
+.reply-form {
+    display: grid;
+    gap: 12px;
+}
+
+.reply-form textarea {
+    min-height: 120px;
+}
+
+.reply-form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.topic-detail p {
+    line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+.replies {
+    display: grid;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.replies h2 {
+    margin-bottom: 0;
+}
+
+.reply {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid rgba(201, 15, 32, 0.16);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 32px rgba(56, 10, 17, 0.08);
+}
+
+.reply-author {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: 10px;
+    color: #5d2027;
+    font-weight: 700;
+    text-align: center;
+}
+
+.reply-author .avatar {
+    width: 64px;
+    height: 64px;
+}
+
+.reply-body {
+    min-width: 0;
+}
+
+.reply-date {
+    margin-bottom: 10px;
+    color: #715259;
+    font-size: 14px;
+}
+
+.reply-body p {
+    margin: 0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 640px) {
+    .reply {
+        grid-template-columns: 1fr;
+    }
+
+    .reply-author {
+        grid-template-columns: auto 1fr;
+        justify-items: start;
+        text-align: left;
+    }
+}

@@ -3,7 +3,7 @@
 {% block title %}{{ topic.title }}{% endblock %}
 
 {% block content %}
-<article class="panel">
+<article class="panel topic-detail">
     <h1>{{ topic.title }}</h1>
 
     <div class="topic-meta">
@@ -15,6 +15,7 @@
     </div>
 
     <p>{{ topic.text }}</p>
+
     {% if user == topic.author %}
         <div class="topic-actions">
             <a class="button" href="{% url 'discussions:topic_update' topic.pk %}">Редактировать</a>
@@ -22,6 +23,53 @@
         </div>
     {% endif %}
 </article>
+
+{% if user.is_authenticated %}
+    <section class="panel reply-form-panel">
+        <h2>Добавить ответ</h2>
+
+        <form method="post" action="{% url 'discussions:reply_create' topic.pk %}" class="reply-form">
+            {% csrf_token %}
+
+            <div class="field">
+                {{ reply_form.text }}
+                {% for error in reply_form.text.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="reply-form-actions">
+                <button type="submit">Добавить</button>
+            </div>
+        </form>
+    </section>
+{% else %}
+    <section class="panel">
+        <p><a href="{% url 'accounts:login' %}">Войдите</a>, чтобы добавить ответ.</p>
+    </section>
+{% endif %}
+
+<section class="replies">
+    <h2>Ответы</h2>
+
+    {% for reply in topic.replies.all %}
+        <article class="reply">
+            <div class="reply-author">
+                {% if reply.author.avatar %}
+                    <img class="avatar" src="{{ reply.author.avatar.url }}" alt="{{ reply.author.username }}">
+                {% endif %}
+                <span>{{ reply.author.username }}</span>
+            </div>
+
+            <div class="reply-body">
+                <div class="reply-date">{{ reply.created_at|date:"d.m.Y H:i" }}</div>
+                <p>{{ reply.text }}</p>
+            </div>
+        </article>
+    {% empty %}
+        <div class="empty">Пока нет ответов.</div>
+    {% endfor %}
+</section>
 
 <a href="{% url 'discussions:topic_list' %}">Назад к темам</a>
 {% endblock %}

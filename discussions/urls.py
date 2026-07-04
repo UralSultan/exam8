@@ -1,6 +1,7 @@
 from django.urls import path
 
-from discussions.views import TopicCreateView, TopicDeleteView, TopicDetailView, TopicListView, TopicUpdateView
+from discussions.views import (TopicCreateView, TopicDeleteView, TopicDetailView, TopicListView, TopicUpdateView,
+                               ReplyCreateView)
 
 app_name = 'discussions'
 
@@ -9,5 +10,6 @@ urlpatterns = [
     path('topics/create/', TopicCreateView.as_view(), name='topic_create'),
     path('topics/<int:pk>/', TopicDetailView.as_view(), name='topic_detail'),
     path('topics/<int:pk>/edit/', TopicUpdateView.as_view(), name='topic_update'),
-    path('topics/<int:pk>/delete/', TopicDeleteView.as_view(), name='topic_delete')
+    path('topics/<int:pk>/delete/', TopicDeleteView.as_view(), name='topic_delete'),
+    path('topics/<int:pk>/reply/', ReplyCreateView.as_view(), name='reply_create'),
 ]
