@@ -98,14 +98,27 @@ class ReplyCreateView(LoginRequiredMixin, CreateView):
         return reverse('discussions:topic_detail', kwargs={'pk': self.kwargs['pk']})
 
 
-class ReplyAuthorRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+class ReplyUpdatePermissionMixin(LoginRequiredMixin, UserPassesTestMixin):
     model = Reply
 
     def test_func(self):
-        return self.get_object().author == self.request.user
+        reply = self.get_object()
+        user = self.request.user
+
+        return reply.author == user or user.has_perm('discussions.change_reply')
 
 
-class ReplyUpdateView(ReplyAuthorRequiredMixin, UpdateView):
+class ReplyDeletePermissionMixin(LoginRequiredMixin, UserPassesTestMixin):
+    model = Reply
+
+    def test_func(self):
+        reply = self.get_object()
+        user = self.request.user
+
+        return reply.author == user or user.has_perm('discussions.delete_reply')
+
+
+class ReplyUpdateView(ReplyUpdatePermissionMixin, UpdateView):
     form_class = ReplyForm
     template_name = 'discussions/reply_update.html'
 
@@ -113,7 +126,7 @@ class ReplyUpdateView(ReplyAuthorRequiredMixin, UpdateView):
         return self.object.topic.get_absolute_url()
 
 
-class ReplyDeleteView(ReplyAuthorRequiredMixin, DeleteView):
+class ReplyDeleteView(ReplyDeletePermissionMixin, DeleteView):
     template_name = 'discussions/reply_confirm_delete.html'
 
     def get_success_url(self):
