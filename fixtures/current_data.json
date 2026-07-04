@@ -1,0 +1,555 @@
+[
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Moderators",
+    "permissions": [
+      [
+        "change_reply",
+        "discussions",
+        "reply"
+      ],
+      [
+        "delete_reply",
+        "discussions",
+        "reply"
+      ],
+      [
+        "change_topic",
+        "discussions",
+        "topic"
+      ],
+      [
+        "delete_topic",
+        "discussions",
+        "topic"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$4EG04p5nMXT3e0RkT6Tann$1S+hvTZOKW5FdKpbGa6TCS8Qp1B3Rbkur8q0N8a4dGo=",
+    "last_login": "2026-07-04T15:58:58.957Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-04T10:09:58.064Z",
+    "avatar": "avatars/default.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$D7Qa6O2Orv2w7UHAcwACe4$xVG2mj6x7gdQfxPJ86BOX4P6tFmyvS5HNSj91ArLZu4=",
+    "last_login": "2026-07-04T16:06:49.111Z",
+    "is_superuser": false,
+    "username": "moder",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-04T15:30:36Z",
+    "avatar": "avatars/default.jpg",
+    "groups": [
+      [
+        "Moderators"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nFkXHry1tjb03Q4M7GkBxT$MkZTrwJ60uwHNPgn7Wu2czD8HH+z964K+2HP0WfLCfw=",
+    "last_login": "2026-07-04T15:55:34.353Z",
+    "is_superuser": false,
+    "username": "user1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-04T15:51:10Z",
+    "avatar": "avatars/default.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$wqNuD8t0UWHRLV9R5mrKku$JU368QQlues/HC1Gw0aG/i34CQoOoZcWjuSg1ahbAjs=",
+    "last_login": "2026-07-04T16:03:21.423Z",
+    "is_superuser": false,
+    "username": "user2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-04T16:03:19.944Z",
+    "avatar": "avatars/image_3ybto0t.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 1,
+  "fields": {
+    "title": "Topick1",
+    "text": "adadsadasdsad",
+    "author": [
+      "admin"
+    ],
+    "created_at": "2026-07-04T11:44:11.012Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 2,
+  "fields": {
+    "title": "asdasd",
+    "text": "asdasdasdas",
+    "author": [
+      "admin"
+    ],
+    "created_at": "2026-07-04T11:59:19.067Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 6,
+  "fields": {
+    "title": "Топ 10 аниме тайтлов на 2023 год",
+    "text": "Подскажите мне топ ваших тайтлов",
+    "author": [
+      "user1"
+    ],
+    "created_at": "2026-07-04T15:56:23.595Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 7,
+  "fields": {
+    "title": "Топ 10 аниме тайтлов на 2024 год",
+    "text": "Топ 10 аниме 2024",
+    "author": [
+      "user1"
+    ],
+    "created_at": "2026-07-04T15:56:53.026Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 8,
+  "fields": {
+    "title": "Топ 10 аниме тайтлов на 2025 год",
+    "text": "топ 10 2025 год",
+    "author": [
+      "user1"
+    ],
+    "created_at": "2026-07-04T15:57:38.236Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 9,
+  "fields": {
+    "title": "Топ 10 аниме тайтлов 2026 год, первое полугодие",
+    "text": "топ аниме первое полугодие 2026",
+    "author": [
+      "user1"
+    ],
+    "created_at": "2026-07-04T15:58:07.949Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 10,
+  "fields": {
+    "title": "Для проверки пагинации страницы Тем3",
+    "text": "Для проверки пагинации страницы Тем3",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:04:40.999Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 11,
+  "fields": {
+    "title": "Для проверки пагинации страницы Тем2",
+    "text": "Для проверки пагинации страницы Тем2",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:04:46.525Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 12,
+  "fields": {
+    "title": "Для проверки пагинации страницы Тем1",
+    "text": "Для проверки пагинации страницы Тем1",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:04:50.256Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 13,
+  "fields": {
+    "title": "Для проверки пагинации страницы Тем4",
+    "text": "Для проверки пагинации страницы Тем4",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:05:15.344Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 14,
+  "fields": {
+    "title": "Для проверки пагинации страницы Тем10",
+    "text": "Для проверки пагинации страницы Тем10",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:05:29.870Z"
+  }
+},
+{
+  "model": "discussions.topic",
+  "pk": 15,
+  "fields": {
+    "title": "Для проверки пагинации Ответов",
+    "text": "Для проверки пагинации Ответов",
+    "author": [
+      "user2"
+    ],
+    "created_at": "2026-07-04T16:05:55.733Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 11,
+  "fields": {
+    "topic": 2,
+    "author": [
+      "user1"
+    ],
+    "text": "Что за тема не понятная ?",
+    "created_at": "2026-07-04T15:58:37.246Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 12,
+  "fields": {
+    "topic": 2,
+    "author": [
+      "user1"
+    ],
+    "text": "Что за тема не понятная ?",
+    "created_at": "2026-07-04T15:58:40.151Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 13,
+  "fields": {
+    "topic": 1,
+    "author": [
+      "user1"
+    ],
+    "text": "Что за тема не понятная ?",
+    "created_at": "2026-07-04T15:58:48.636Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 14,
+  "fields": {
+    "topic": 1,
+    "author": [
+      "user1"
+    ],
+    "text": "Что за тема не понятная ?",
+    "created_at": "2026-07-04T15:58:50.042Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 15,
+  "fields": {
+    "topic": 9,
+    "author": [
+      "admin"
+    ],
+    "text": "Провожающая в последний путь Фрирен (2 сезон)\r\nМагическая битва (3 сезон: Смертельная миграция)\r\nАтелье колдовских колпаков\r\nИстребитель демонов: Бесконечный замок (Трилогия фильмов)\r\nБлич: Тысячелетняя кровавая война — Бедствие (4 часть)\r\nВан-Пис (Ремейк от Wit Studio — The One Piece)\r\nСпираль (Uzumaki — финальные показы и дистрибуция)\r\nХантер х Хантер (Анонсированные спешлы на фоне возвращения манги)\r\nДандадан (2 сезон)Гачиакута (2 сезон)",
+    "created_at": "2026-07-04T16:00:40.194Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 16,
+  "fields": {
+    "topic": 8,
+    "author": [
+      "admin"
+    ],
+    "text": "Монолог фармацевта (2 сезон)\r\nПоднятие уровня в одиночку (2 сезон)\r\nГачиакута (1 сезон)\r\nСакамотоские дни (Sakamoto Days)\r\nКайдзю №8 (2 сезон)\r\nРок-тихоня! Фильмы-компиляции\r\nСиний экзорцист: Заснеженное предместье\r\nО моём перерождении в слизь (4 сезон)\r\nДобро пожаловать в класс превосходства (4 сезон)\r\nМагическая битва (Анонсы и спешлы к финалу)",
+    "created_at": "2026-07-04T16:01:20.975Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 17,
+  "fields": {
+    "topic": 7,
+    "author": [
+      "admin"
+    ],
+    "text": "Дандадан (1 сезон)\r\nПоднятие уровня в одиночку (1 сезон)\r\nКайдзю №8 (1 сезон)\r\nО моём перерождении в слизь (3 сезон)\r\nСемья шпиона (2 сезон / Фильм)\r\nВолейбол!! Фильм: Битва на мусорной свалке\r\nЗвёздное дитя (2 сезон)\r\nКлинок, рассекающий демонов: Тренировка столпов (4 сезон)\r\nВетролом\r\nНевероятные приключения ДжоДжо: Сияющий бриллиант (новые спецвыпуски)",
+    "created_at": "2026-07-04T16:02:01.909Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 18,
+  "fields": {
+    "topic": 6,
+    "author": [
+      "admin"
+    ],
+    "text": "Провожающая в последний путь Фрирен (1 сезон)\r\nМагическая битва (2 сезон)\r\nМонолог фармацевта (1 сезон)\r\nЗвёздное дитя (1 сезон)\r\nБлич: Тысячелетняя кровавая война — Разделение (2 часть)\r\nСага о Винланде (2 сезон)\r\nВеликая небесная стена\r\nИстребитель демонов: Деревня кузнецов (3 сезон)\r\nРайский ад\r\nЧеловек-бензопила (продолжение тренда конца 2022 года)",
+    "created_at": "2026-07-04T16:02:40.719Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 19,
+  "fields": {
+    "topic": 9,
+    "author": [
+      "user2"
+    ],
+    "text": "Супер!",
+    "created_at": "2026-07-04T16:03:40.062Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 20,
+  "fields": {
+    "topic": 8,
+    "author": [
+      "user2"
+    ],
+    "text": "Супер!",
+    "created_at": "2026-07-04T16:03:48.241Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 21,
+  "fields": {
+    "topic": 7,
+    "author": [
+      "user2"
+    ],
+    "text": "Супер!",
+    "created_at": "2026-07-04T16:03:54.701Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 22,
+  "fields": {
+    "topic": 2,
+    "author": [
+      "user2"
+    ],
+    "text": "???????????????",
+    "created_at": "2026-07-04T16:04:06.733Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 23,
+  "fields": {
+    "topic": 1,
+    "author": [
+      "user2"
+    ],
+    "text": "????????????????????",
+    "created_at": "2026-07-04T16:04:12.548Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 24,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:01.836Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 25,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:03.590Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 26,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:05.381Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 27,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:07.793Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 28,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:10.096Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 29,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:12.415Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 30,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:14.933Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 31,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:17.645Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 32,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:19.189Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 33,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:20.418Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 34,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:21.771Z"
+  }
+},
+{
+  "model": "discussions.reply",
+  "pk": 35,
+  "fields": {
+    "topic": 15,
+    "author": [
+      "user2"
+    ],
+    "text": "Для проверки пагинации Ответов",
+    "created_at": "2026-07-04T16:06:22.899Z"
+  }
+}
+]
