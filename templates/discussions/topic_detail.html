@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ topic.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ topic.title }}</h1>
+
+{% if topic.author.avatar %}
+    <img src="{{ topic.author.avatar.url }}" alt="{{ topic.author.username }}" width="80">
+{% endif %}
+
+<p>{{ topic.text }}</p>
+
+<p>Автор: {{ topic.author.username }}</p>
+<p>Дата: {{ topic.created_at|date:"d.m.Y H:i" }}</p>
+
+<a href="{% url 'discussions:topic_list' %}">Назад к темам</a>
+{% endblock %}

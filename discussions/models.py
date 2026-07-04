@@ -15,7 +15,7 @@ class Topic(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('discussions:topic-detail', kwargs={'pk': self.pk})
+        return reverse('discussions:topic_detail', kwargs={'pk': self.pk})
 
 
 class Reply(models.Model):
