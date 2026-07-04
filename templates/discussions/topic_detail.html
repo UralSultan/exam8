@@ -8,9 +8,11 @@
 
     <div class="topic-meta">
         {% if topic.author.avatar %}
-            <img class="avatar small" src="{{ topic.author.avatar.url }}" alt="{{ topic.author.username }}">
+            <a href="{% url 'accounts:profile' topic.author.pk %}">
+                <img class="avatar small" src="{{ topic.author.avatar.url }}" alt="{{ topic.author.username }}">
+            </a>
         {% endif %}
-        <span>{{ topic.author.username }}</span>
+        <a href="{% url 'accounts:profile' topic.author.pk %}">{{ topic.author.username }}</a>
         <span>{{ topic.created_at|date:"d.m.Y H:i" }}</span>
     </div>
 
@@ -56,9 +58,11 @@
         <article class="reply">
             <div class="reply-author">
                 {% if reply.author.avatar %}
-                    <img class="avatar" src="{{ reply.author.avatar.url }}" alt="{{ reply.author.username }}">
+                    <a href="{% url 'accounts:profile' reply.author.pk %}">
+                        <img class="avatar" src="{{ reply.author.avatar.url }}" alt="{{ reply.author.username }}">
+                    </a>
                 {% endif %}
-                <span>{{ reply.author.username }}</span>
+                <a href="{% url 'accounts:profile' reply.author.pk %}">{{ reply.author.username }}</a>
             </div>
 
             <div class="reply-body">

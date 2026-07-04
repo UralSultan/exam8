@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile_user.username }}{% endblock %}
+
+{% block content %}
+<section class="panel profile">
+    <div class="profile-head">
+        {% if profile_user.avatar %}
+            <img class="avatar profile-avatar" src="{{ profile_user.avatar.url }}" alt="{{ profile_user.username }}">
+        {% endif %}
+
+        <div>
+            <h1>{{ profile_user.username }}</h1>
+            <p>Дата регистрации: {{ profile_user.date_joined|date:"d.m.Y H:i" }}</p>
+            <p>Последний вход: {{ profile_user.last_login|date:"d.m.Y H:i" }}</p>
+            <p>Тем: {{ topics|length }}</p>
+            <p>Комментариев: {{ profile_user.replies_count }}</p>
+        </div>
+    </div>
+</section>
+
+<div class="page-head">
+    <h2>Темы пользователя</h2>
+</div>
+
+<div class="topic-table-wrap">
+    <table class="topic-table">
+        <thead>
+            <tr>
+                <th>Название темы</th>
+                <th>Дата создания</th>
+                <th>Автор</th>
+                <th>Ответы</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr class="topic-row" onclick="window.location.href='{{ topic.get_absolute_url }}'">
+                    <td class="topic-title">
+                        <a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a>
+                    </td>
+                    <td>{{ topic.created_at|date:"d.m.Y H:i" }}</td>
+                    <td>{{ topic.author.username }}</td>
+                    <td>{{ topic.replies_count }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="empty-row" colspan="4">У пользователя пока нет тем.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
