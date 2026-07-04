@@ -55,19 +55,32 @@ class TopicCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class TopicAuthorRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+class TopicUpdatePermissionMixin(LoginRequiredMixin, UserPassesTestMixin):
     model = Topic
 
     def test_func(self):
-        return self.get_object().author == self.request.user
+        topic = self.get_object()
+        user = self.request.user
+
+        return topic.author == user or user.has_perm('discussions.change_topic')
 
 
-class TopicUpdateView(TopicAuthorRequiredMixin, UpdateView):
+class TopicDeletePermissionMixin(LoginRequiredMixin, UserPassesTestMixin):
+    model = Topic
+
+    def test_func(self):
+        topic = self.get_object()
+        user = self.request.user
+
+        return topic.author == user or user.has_perm('discussions.delete_topic')
+
+
+class TopicUpdateView(TopicUpdatePermissionMixin, UpdateView):
     form_class = TopicForm
     template_name = 'discussions/topic_update.html'
 
 
-class TopicDeleteView(TopicAuthorRequiredMixin, DeleteView):
+class TopicDeleteView(TopicDeletePermissionMixin, DeleteView):
     success_url = reverse_lazy('discussions:topic_list')
     template_name = 'discussions/topic_confirm_delete.html'
 
