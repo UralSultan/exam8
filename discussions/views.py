@@ -1,6 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
-from django.views.generic import CreateView, DetailView, ListView
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 
 from discussions.forms import TopicForm
 from discussions.models import Topic
@@ -35,3 +37,20 @@ class TopicCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class TopicAuthorRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    model = Topic
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
+
+
+class TopicUpdateView(TopicAuthorRequiredMixin, UpdateView):
+    form_class = TopicForm
+    template_name = 'discussions/topic_update.html'
+
+
+class TopicDeleteView(TopicAuthorRequiredMixin, DeleteView):
+    success_url = reverse_lazy('discussions:topic_list')
+    template_name = 'discussions/topic_confirm_delete.html'

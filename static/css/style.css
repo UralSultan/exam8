@@ -363,3 +363,17 @@ textarea {
         font-size: 26px;
     }
 }
+
+.topic-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button.danger {
+    background: #7f0712;
+}
+
+.button.danger:hover {
+    background: #5f050d;
+}

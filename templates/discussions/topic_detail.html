@@ -15,6 +15,12 @@
     </div>
 
     <p>{{ topic.text }}</p>
+    {% if user == topic.author %}
+        <div class="topic-actions">
+            <a class="button" href="{% url 'discussions:topic_update' topic.pk %}">Редактировать</a>
+            <a class="button danger" href="{% url 'discussions:topic_delete' topic.pk %}">Удалить</a>
+        </div>
+    {% endif %}
 </article>
 
 <a href="{% url 'discussions:topic_list' %}">Назад к темам</a>
