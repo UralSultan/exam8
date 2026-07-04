@@ -18,10 +18,14 @@
 
     <p>{{ topic.text }}</p>
 
-    {% if user == topic.author %}
+    {% if user == topic.author or perms.discussions.change_topic or perms.discussions.delete_topic %}
         <div class="topic-actions">
-            <a class="button" href="{% url 'discussions:topic_update' topic.pk %}">Редактировать</a>
-            <a class="button danger" href="{% url 'discussions:topic_delete' topic.pk %}">Удалить</a>
+            {% if user == topic.author or perms.discussions.change_topic %}
+                <a class="button" href="{% url 'discussions:topic_update' topic.pk %}">Редактировать</a>
+            {% endif %}
+            {% if user == topic.author or perms.discussions.delete_topic %}
+                <a class="button danger" href="{% url 'discussions:topic_delete' topic.pk %}">Удалить</a>
+            {% endif %}
         </div>
     {% endif %}
 </article>
@@ -68,10 +72,14 @@
             <div class="reply-body">
                 <div class="reply-date">{{ reply.created_at|date:"d.m.Y H:i" }}</div>
                 <p>{{ reply.text }}</p>
-                {% if user == reply.author %}
+                {% if user == reply.author or perms.discussions.change_reply or perms.discussions.delete_reply %}
                     <div class="reply-actions">
-                        <a href="{% url 'discussions:reply_update' reply.pk %}">Редактировать</a>
-                        <a href="{% url 'discussions:reply_delete' reply.pk %}">Удалить</a>
+                        {% if user == reply.author or perms.discussions.change_reply %}
+                            <a href="{% url 'discussions:reply_update' reply.pk %}">Редактировать</a>
+                        {% endif %}
+                        {% if user == reply.author or perms.discussions.delete_reply %}
+                            <a href="{% url 'discussions:reply_delete' reply.pk %}">Удалить</a>
+                        {% endif %}
                     </div>
                 {% endif %}
             </div>
