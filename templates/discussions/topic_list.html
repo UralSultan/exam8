@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-
+{%for topic in topics%}
+{{ topic.title }}
+<p>{{ topic.text }}</p>
+<div class="topic-meta">
+                <img class="avatar small" src="{{ topic.author.avatar.url }}" alt="{{ topic.author.username }}">
+                <span>{{ topic.author.username }}</span>
+                <span>{{ topic.created_at|date:"d.m.Y H:i" }}</span>
+            </div>
+        </article>
+    {% empty %}
+        <div class="empty">Пока нет тем.</div>
+    {% endfor %}
 </body>
 </html>
